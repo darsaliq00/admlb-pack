@@ -13,7 +13,7 @@ then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    load_dotenv
+    load_configenv
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
