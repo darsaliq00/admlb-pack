@@ -7,10 +7,6 @@ then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    grep -v '^#' config.env
-    set -o allexport
-    source config.env
-    set +o allexport
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
