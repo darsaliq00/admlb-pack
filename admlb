@@ -1,9 +1,16 @@
+MAINDIR=/usr/src/app
+
+mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
+
 if [[ ${CONFIG_FILE_URL} ]];
 then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    export $(cat config.env | xargs)
+    grep -v '^#' config.env
+    set -o allexport
+    source config.env
+    set +o allexport
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
@@ -18,10 +25,6 @@ else
     UPSTREAM_BRANCH="main"
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing using default one"
 fi
-
-MAINDIR=/usr/src/app
-
-mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
 
 git init -q
 git config --global user.email ahadmirrorlab1@gmail.com
