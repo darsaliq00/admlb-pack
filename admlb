@@ -1,19 +1,9 @@
-run_python_code() {
-    python3${pVer%.*} -c "$1"
-}
-
-load_configenv() {
-    $(run_python_code 'from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv(), override=True)')
-}
-
 if [[ ${CONFIG_FILE_URL} ]];
 then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    load_configenv
+    export $(xargs < config.env)
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
