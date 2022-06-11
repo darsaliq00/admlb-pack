@@ -8,7 +8,8 @@ run_python_code() {
 }
 
 load_configenv() {
-    $(_run_python_code 'from dotenv import load_dotenv
+    $(run_python_code 'from dotenv import load_dotenv
+
 load_dotenv('config.env', override=True) ')
 }
 
