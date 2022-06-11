@@ -3,7 +3,7 @@ then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    export $(xargs < config.env)
+    export $(cat config.env | xargs)
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
