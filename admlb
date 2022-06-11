@@ -1,5 +1,28 @@
-UPSTREAM_REPO="https://github.com/ahad0xff/admlb"
-UPSTREAM_BRANCH="main"
+if [[ ${CONFIG_FILE_URL} ]];
+then
+    curl -o config.env -s $CONFIG_FILE_URL
+fi
+
+run_python_code() {
+    python3${pVer%.*} -c "$1"
+}
+
+load_configenv() {
+    $(_run_python_code 'from dotenv import load_dotenv
+load_dotenv('config.env', override=True) ')
+}
+
+load_configenv
+
+if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
+then
+    UPSTREAM_REPO=UPSTREAM_REPO
+    UPSTREAM_BRANCH=UPSTREAM_BRANCH
+else
+    UPSTREAM_REPO="https://github.com/ahad0xff/admlb"
+    UPSTREAM_BRANCH="main"
+fi
+
 MAINDIR=/usr/src/app
 
 mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
