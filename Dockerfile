@@ -1,4 +1,4 @@
-FROM anasty17/mltb:heroku
+FROM ahad1337/admlb:heroku
 
 WORKDIR /app
 
