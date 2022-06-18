@@ -1,9 +1,5 @@
 #!/bin/bash
 
-MAINDIR=/usr/src/app
-
-mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
-
 run_python_code() {
     python3${pVer%.*} -c "$1"
 }
