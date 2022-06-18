@@ -6,12 +6,7 @@ run_python_code() {
 
 load_configenv() {
     $(run_python_code 'from dotenv import load_dotenv
-from os import environ
-
-load_dotenv("config.env", override=True)
-
-UPSTREAM_REPO = environ.get("UPSTREAM_REPO")
-UPSTREAM_BRANCH = environ.get("UPSTREAM_BRANCH")')
+load_dotenv("config.env", override=True)')
 }
 
 if [[ ${CONFIG_FILE_URL} ]];
