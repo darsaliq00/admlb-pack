@@ -1,6 +1,8 @@
 FROM ahad1337/admlb:heroku
 
-WORKDIR /app
+WORKDIR /usr/src/app
+
+RUN chmod 777 /usr/src/app
 
 COPY . .
 
