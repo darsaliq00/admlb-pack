@@ -2,6 +2,15 @@ MAINDIR=/usr/src/app
 
 mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
 
+run_python_code() {
+    python3${pVer%.*} -c "$1"
+}
+
+load_configenv() {
+    $(run_python_code "from dotenv import load_dotenv
+load_dotenv('config.env', override=True)")
+}
+
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
