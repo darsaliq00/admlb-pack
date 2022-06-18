@@ -2,15 +2,6 @@ MAINDIR=/usr/src/app
 
 mkdir $MAINDIR && chmod 777 $MAINDIR && cd $MAINDIR
 
-if [[ ${CONFIG_FILE_URL} ]];
-then
-    echo "Downloading... config file"
-    curl -o config.env -s $CONFIG_FILE_URL
-    echo "Done"
-else
-    echo "CONFIG_FILE_URL var not provided!"
-fi
-
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
@@ -23,7 +14,6 @@ fi
 git init -q
 git config --global user.email ahadmirrorlab1@gmail.com
 git config --global user.name ahadz-git
-echo "A H A D" >> admlb.txt
 git add .
 git commit -sm update -q
 git remote add origin $UPSTREAM_REPO
