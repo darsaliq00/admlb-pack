@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip3 install --no-cache-dir -r req.txt
 
-CMD ["bash", "admlb"]
+CMD ["bash", "admlb.sh"]
