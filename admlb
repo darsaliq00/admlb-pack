@@ -1,13 +1,7 @@
 #!/bin/bash
 
-run_python_code() {
-    python3${pVer%.*} -c "$1"
-}
-
-load_configenv() {
-    $(run_python_code 'from dotenv import load_dotenv
-load_dotenv("config.env", override=True)')
-}
+echo "from dotenv import load_dotenv
+load_dotenv('config.env', override=True)" >> load_config.py && python3 load_config.py
 
 if [[ ${CONFIG_FILE_URL} ]];
 then
