@@ -11,6 +11,16 @@ load_configenv() {
 load_dotenv('config.env', override=True)")
 }
 
+if [[ ${CONFIG_FILE_URL} ]];
+then
+    echo "Downloading... config file"
+    curl -o config.env -s $CONFIG_FILE_URL
+    echo "Done"
+    load_configenv
+else
+    echo "CONFIG_FILE_URL var not provided!"
+fi
+
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
