@@ -28,6 +28,8 @@ else
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing, using default ones"
 fi
 
+[ -d ".git" ] && rm -rf ".git"
+
 git init -q
 git config --global user.email ahadmirrorlab1@gmail.com
 git config --global user.name ahadz-git
