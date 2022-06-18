@@ -1,17 +1,17 @@
 #!/bin/bash
 
-echo "from dotenv import load_dotenv
-load_dotenv('config.env', override=True)" >> load_config.py && python3 load_config.py
-
 if [[ ${CONFIG_FILE_URL} ]];
 then
     echo "Downloading... config file"
     curl -o config.env -s $CONFIG_FILE_URL
     echo "Done"
-    load_configenv
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
+
+echo "from dotenv import load_dotenv
+load_dotenv('config.env', override=True)" >> load_config.py
+python3 load_config.py && rm load_config.py
 
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
