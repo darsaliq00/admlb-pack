@@ -18,7 +18,7 @@ then
 else
     UPSTREAM_REPO="https://github.com/ahad0xff/admlb"
     UPSTREAM_BRANCH="main"
-    echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing, Using default once"
+    echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
 fi
 
 [ -d .git ] && rm -rf .git
