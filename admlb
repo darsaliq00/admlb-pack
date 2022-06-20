@@ -21,7 +21,7 @@ else
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing, Using default once"
 fi
 
-[ -d ".git" ] && rm -rf ".git"
+[ -d .git ] && rm -rf .git
 
 git init -q
 git config --global user.email ahadmirrorlab1@gmail.com
