@@ -11,8 +11,8 @@ fi
 if [[ -f config.env ]];
 then
     echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
-    export $(echo "from dotenv import load_dotenv
-    from os import environ
+    export $(echo "from os import environ
+    from dotenv import load_dotenv
 
     load_dotenv('config.env', override=True)
 
