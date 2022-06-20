@@ -9,25 +9,6 @@ else
     echo "CONFIG_FILE_URL var not provided!"
 fi
 
-run_python_code() {
-    python3${pVer%.*} -c "$1"
-}
-
-load_config_env() {
-    $(run_python_code 'from dotenv import load_dotenv
-from os import environ
-
-load_dotenv("config.env", override=True)
-
-UPSTREAM_REPO = environ.get("UPSTREAM_REPO")
-UPSTREAM_BRANCH = environ.get("UPSTREAM_BRANCH")
-
-print(UPSTREAM_REPO)
-print(UPSTREAM_BRANCH)')
-}
-
-load_config_env
-
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
