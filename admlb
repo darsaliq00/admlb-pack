@@ -12,6 +12,14 @@ else
     echo "CONFIG_FILE_URL var not provided!"
 fi
 
+if [[ -f config.env ]];
+then
+    echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
+else
+    echo "Config.env file missing! Exiting now"
+    exit
+fi
+
 if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
