@@ -27,8 +27,8 @@ if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]];
 then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
 else
-    UPSTREAM_REPO="https://github.com/ahad0xff/admlb"
-    UPSTREAM_BRANCH="main"
+    UPSTREAM_REPO=https://github.com/ahad0xff/admlb
+    UPSTREAM_BRANCH=main
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
 fi
 
