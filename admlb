@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ ${CONFIG_FILE_URL} ]; then
+if [[ ${CONFIG_FILE_URL} ]]; then
     echo "Detected CONFIG_FILE_URL, Downloading..."
     curl -o config.env -s $CONFIG_FILE_URL && echo "Done"
 else
     echo "CONFIG_FILE_URL var not provided!"
 fi
 
-if [ -f config.env ]; then
+if [[ -f config.env ]]; then
     echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
     export $(echo "from os import environ
 from dotenv import load_dotenv
@@ -21,7 +21,7 @@ else
     exit
 fi
 
-if [ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]; then
+if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
     echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
 else
     UPSTREAM_REPO=https://github.com/ahadz-git/mirror-leech-telegram-bot
@@ -29,7 +29,7 @@ else
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
 fi
 
-if [ -d .git ]; then
+if [[ -d .git ]]; then
     rm -rf .git
 fi
 
