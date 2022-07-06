@@ -11,9 +11,12 @@ if [[ -f config.env ]]; then
     echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
     export $(echo "from os import environ
 from dotenv import load_dotenv
+
 load_dotenv('config.env', override=True)
+
 UPSTREAM_REPO = environ.get('UPSTREAM_REPO')
 UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH')
+
 print(f'UPSTREAM_REPO={UPSTREAM_REPO}')
 print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) && echo "Done"
 else
@@ -29,9 +32,7 @@ else
     echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
 fi
 
-if [[ -d .git ]]; then
-    rm -rf .git
-fi
+[ -d .git ] && rm -rf .git
 
 git init -q
 git config --global user.email ahadmirrorlab1@gmail.com
