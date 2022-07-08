@@ -2,7 +2,7 @@
 
 get_config_url() {
     if [[ ${CONFIG_FILE_URL} ]]; then
-        printf "Detected CONFIG_FILE_URL\nDownloading... Config File"
+        printf "Detected CONFIG_FILE_URL\nDownloading... config file"
         curl -o config.env -s $CONFIG_FILE_URL &&
         printf "DONE!"
     else
