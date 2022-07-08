@@ -40,11 +40,19 @@ git_pack() {
     git reset --hard origin/$UPSTREAM_BRANCH -q
 }
 
+keep_alive() {
+    while true
+    do
+        curl -o/dev/null -s https://$APP_NAME.herokuapp.com
+        sleep 15m
+    done
+}
+
 start_bot() {
     get_config_url
     get_repo_link
     git_pack
-    sh alive.sh & python3 -m bot
+    keep_alive & python3 -m bot
 }
 
 start_bot
