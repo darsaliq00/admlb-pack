@@ -10,13 +10,13 @@ fi
 
 if [[ -f config.env ]]; then
     printf "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
-    export $(echo "from os import environ
+    export $(echo "from os.environ import get as get_env
 from dotenv import load_dotenv
 
 load_dotenv('config.env', override=True)
 
-UPSTREAM_REPO = environ.get('UPSTREAM_REPO')
-UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH')
+UPSTREAM_REPO = get_env('UPSTREAM_REPO')
+UPSTREAM_BRANCH = get_env('UPSTREAM_BRANCH')
 
 print(f'UPSTREAM_REPO={UPSTREAM_REPO}')
 print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) &&
