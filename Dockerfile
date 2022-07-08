@@ -1,7 +1,7 @@
 FROM ahad1337/admlb:heroku
 
 WORKDIR /usr/src/app
-SHELL ["/bin/bash", "-c"]
+
 RUN chmod 777 /usr/src/app
 
 COPY . .
