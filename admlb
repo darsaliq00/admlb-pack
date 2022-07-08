@@ -13,7 +13,7 @@ get_config_url() {
 get_repo_link() {
     if [[ -f config.env ]]; then
         printf "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
-        export $(echo "from os environ
+        export $(echo "from os import environ
 from dotenv import load_dotenv
 
 load_dotenv('config.env', override=True)
