@@ -2,17 +2,12 @@
 
 get_config_url() {
     if [[ ${CONFIG_FILE_URL} ]]; then
-        echo "Detected CONFIG_FILE_URL, Downloading... config file"
-        curl -o config.env -s $CONFIG_FILE_URL &&
-        echo "DONE!"
-    else
-        echo "CONFIG_FILE_URL var not provided!"
+        curl -o config.env -s $CONFIG_FILE_URL
     fi
 }
 
 get_repo_link() {
     if [[ -f config.env ]]; then
-        echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
         export $(echo "from os import environ
 from dotenv import load_dotenv
 
@@ -22,11 +17,11 @@ UPSTREAM_REPO = environ.get('UPSTREAM_REPO')
 UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH')
 
 print(f'UPSTREAM_REPO={UPSTREAM_REPO}')
-print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) &&
-        echo "DONE!"
+print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3)
     else
         echo "Config.env file missing! Exiting now" || exit
     fi
+
     if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
         echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
     else
