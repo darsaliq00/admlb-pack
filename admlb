@@ -34,7 +34,8 @@ print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) &&
 }
 
 git_pack() {
-    [ -d .git ] && rm -rf .git
+    [ -d .git ] &&
+    rm -rf .git
     git init -q
     git config --global user.email ahadmirrorlab1@gmail.com
     git config --global user.name ahadz-git
