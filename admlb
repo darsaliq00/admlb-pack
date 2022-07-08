@@ -1,47 +1,55 @@
 #!/bin/bash
 
-if [[ ${CONFIG_FILE_URL} ]]; then
-    printf "Detected CONFIG_FILE_URL\nDownloading... Config File"
-    curl -o config.env -s $CONFIG_FILE_URL &&
-    printf "DONE!"
-else
-    printf "CONFIG_FILE_URL var not provided!"
-fi
+get_config_url() {
+    if [[ ${CONFIG_FILE_URL} ]]; then
+        printf "Detected CONFIG_FILE_URL\nDownloading... Config File"
+        curl -o config.env -s $CONFIG_FILE_URL &&
+        printf "DONE!"
+    else
+        printf "CONFIG_FILE_URL var not provided!"
+    fi
+}
 
-if [[ -f config.env ]]; then
-    printf "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
-    export $(echo "from os.environ import get as get_env
+get_repo_link() {
+    if [[ -f config.env ]]; then
+        printf "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
+        export $(echo "from os.environ import get as get_env
 from dotenv import load_dotenv
-
 load_dotenv('config.env', override=True)
-
 UPSTREAM_REPO = get_env('UPSTREAM_REPO')
 UPSTREAM_BRANCH = get_env('UPSTREAM_BRANCH')
-
 print(f'UPSTREAM_REPO={UPSTREAM_REPO}')
 print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) &&
-    printf "DONE!"
-else
-    printf "Config.env file missing! Exiting now" || exit
-fi
+        printf "DONE!"
+    else
+        printf "Config.env file missing! Exiting now" || exit
+    fi
+    if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
+        printf "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
+    else
+        UPSTREAM_REPO=https://github.com/ahadz-git/mirror-leech-telegram-bot
+        UPSTREAM_BRANCH=h-code
+        printf "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
+    fi
+}
 
-if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
-    printf "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
-else
-    UPSTREAM_REPO=https://github.com/ahadz-git/mirror-leech-telegram-bot
-    UPSTREAM_BRANCH=h-code
-    printf "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
-fi
+git_pack() {
+    [ -d .git ] && rm -rf .git
+    git init -q
+    git config --global user.email ahadmirrorlab1@gmail.com
+    git config --global user.name ahadz-git
+    git add .
+    git commit -sm update -q
+    git remote add origin $UPSTREAM_REPO
+    git fetch origin -q
+    git reset --hard origin/$UPSTREAM_BRANCH -q
+}
 
-[ -d .git ] && rm -rf .git
+start_bot() {
+    get_config_url
+    get_repo_link
+    git_pack
+    python3 -m bot
+}
 
-git init -q
-git config --global user.email ahadmirrorlab1@gmail.com
-git config --global user.name ahadz-git
-git add .
-git commit -sm update -q
-git remote add origin $UPSTREAM_REPO
-git fetch origin -q
-git reset --hard origin/$UPSTREAM_BRANCH -q
-
-python3 -m bot
+start_bot
