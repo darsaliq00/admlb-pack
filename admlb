@@ -2,17 +2,17 @@
 
 get_config_url() {
     if [[ ${CONFIG_FILE_URL} ]]; then
-        printf "Detected CONFIG_FILE_URL\nDownloading... config file"
+        echo "Detected CONFIG_FILE_URL\nDownloading... config file"
         curl -o config.env -s $CONFIG_FILE_URL &&
-        printf "DONE!"
+        echo "DONE!"
     else
-        printf "CONFIG_FILE_URL var not provided!"
+        echo "CONFIG_FILE_URL var not provided!"
     fi
 }
 
 get_repo_link() {
     if [[ -f config.env ]]; then
-        printf "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
+        echo "Loading... UPSTREAM_REPO and UPSTREAM_BRANCH from config.env"
         export $(echo "from os import environ
 from dotenv import load_dotenv
 
@@ -23,16 +23,16 @@ UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH')
 
 print(f'UPSTREAM_REPO={UPSTREAM_REPO}')
 print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3) &&
-        printf "DONE!"
+        echo "DONE!"
     else
-        printf "Config.env file missing! Exiting now" || exit
+        echo "Config.env file missing! Exiting now" || exit
     fi
     if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
-        printf "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
+        echo "Detected UPSTREAM_REPO and UPSTREAM_BRANCH"
     else
         UPSTREAM_REPO=https://github.com/ahadz-git/mirror-leech-telegram-bot
         UPSTREAM_BRANCH=h-code
-        printf "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
+        echo "UPSTREAM_REPO or UPSTREAM_BRANCH missing! Using default once"
     fi
 }
 
@@ -53,8 +53,7 @@ start_bot() {
     get_config_url
     get_repo_link
     git_pack
-    bash Alive.sh
-    python3 -m bot
+    sh alive.sh; python3 -m bot
 }
 
 start_bot
