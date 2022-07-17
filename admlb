@@ -2,7 +2,7 @@
 
 get_config_url() {
     if [[ ${CONFIG_FILE_URL} ]]; then
-        curl -o config.env -s $CONFIG_FILE_URL
+        curl -s $CONFIG_FILE_URL -o config.env
     fi
 }
 
@@ -44,7 +44,7 @@ git_pack() {
 keep_alive() {
     while true
     do
-        curl -o /dev/null -s https://$APP_NAME.herokuapp.com
+        curl -s https://$APP_NAME.herokuapp.com -o /dev/null
         sleep 15m
     done
 }
