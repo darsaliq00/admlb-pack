@@ -21,7 +21,7 @@ print(f'UPSTREAM_BRANCH={UPSTREAM_BRANCH}')" | python3)
     fi
 
     if [[ ${UPSTREAM_REPO} && ${UPSTREAM_BRANCH} ]]; then
-        echo ""
+        echo "Detected UPSTREAM REPO and UPSTREAM BRANCH"
     else
         UPSTREAM_REPO=https://github.com/ahadz-git/mirror-leech-telegram-bot
         UPSTREAM_BRANCH=h-code
