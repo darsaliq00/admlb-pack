@@ -10,10 +10,11 @@
   "env": {
       "HEROKU_APP_NAME": {
           "description": "Copy-Paste the app name that you just typed above.",
-          "required": true
+          "value": ""
       },
       "CONFIG_FILE_URL": {
           "description": "Add your config file url",
+          "value": "",
           "required": false
       },
       "UPSTREAM_REPO": {
