@@ -18,13 +18,13 @@
           "required": false
       },
       "UPSTREAM_REPO": {
-          "description": "Add your repo link if u want",
-          "value": "https://github.com/ahadz-git/mirror-leech-telegram-bot",
+          "description": "Add your repo link",
+          "value": "",
           "required": false
       },
       "UPSTREAM_BRANCH": {
-          "description": "Add your repo branch if u want",
-          "value": "h-code",
+          "description": "Add your repo branch",
+          "value": "",
           "required": false
       }
     }
