@@ -1,0 +1,28 @@
+{
+  "name": "admlb",
+  "description": "A Telegram bot for mirror and leech",
+  "keywords": [
+      "telegram",
+      "bot"
+    ],
+"repository": "https://github.com/ahad0xff/admlb-pack",
+    "stack": "container",
+  "env": {
+      "HEROKU_APP_NAME": {
+          "description": "Copy-Paste the app name that you just typed above.",
+          "required": true
+      },
+      "CONFIG_FILE_URL": {
+          "description": "add your config file url"
+      },
+      "UPSTREAM_REPO": {
+          "description": "add your repo link if u want",
+          "value": "https://github.com/ahadz-git/mirror-leech-telegram-bot"
+      },
+      "UPSTREAM_BRANCH": {
+          "description": "add your repo branch of u want",
+          "value": "h-code"
+      }
+    }
+}
+
