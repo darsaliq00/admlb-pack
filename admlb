@@ -52,7 +52,7 @@ keep_alive() {
 start_bot() {
     get_config_url
     get_repo_link
-    git_pack
+    git_pack &&
     keep_alive &
     python3 -m bot
 }
