@@ -16,6 +16,12 @@ RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
     then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $cpu; fi) \
     -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
 
+RUN mv /bin/aria2c /bin/extra-api
+
+RUN mv /bin/qbittorrent-nox /bin/last-api
+
+RUN mv /bin/ffmpeg /bin/new-api
+
 ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
 
 COPY . .
