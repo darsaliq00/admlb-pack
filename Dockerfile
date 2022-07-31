@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 RUN chmod 777 /usr/src/app
 
-RUN apt install mediainfo -y
+RUN apt-get -y install mediainfo
 
 COPY . .
 
