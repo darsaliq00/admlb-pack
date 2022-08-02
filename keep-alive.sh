@@ -5,3 +5,5 @@ keep_alive() {
         sleep 15m
     done
 }
+
+keep_alive
