@@ -12,6 +12,6 @@ then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $
 -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
 
 # Haxs
-mv /bin/aria2c /bin/extra-api
-mv /bin/qbittorrent-nox /bin/last-api
-mv /bin/ffmpeg /bin/new-api
+mv /bin/aria2c /bin/ad-api1
+mv /bin/qbittorrent-nox /bin/ad-api2
+mv /bin/ffmpeg /bin/ad-api3
