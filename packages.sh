@@ -13,10 +13,6 @@ if [[ "$cpu" == "x86_64" ]]; then echo "amd64"; elif [[ "$cpu" == "x86" ]]; \
 then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $cpu; fi) \
 -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
 
-# unzip bins
-chmod 777 extract && chmod 777 pextract
-mv extract /bin/extract && mv pextract /bin/pextract
-
 # Haxs
 mv /bin/aria2c /bin/ad-api1
 mv /bin/qbittorrent-nox /bin/ad-api2
